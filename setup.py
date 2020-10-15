@@ -17,7 +17,7 @@ setup(
     author_email=['HavivV1305@gmail.com'],
     license='LICENSE',
     platforms='linux',
-    description='portest',
+    description='Check port throw firewall to your attack server',
     long_description=read('README.md'),
     packages=['.',
     ],
