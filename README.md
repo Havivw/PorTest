@@ -1,4 +1,4 @@
-CocaEnum 
+PorTest 
 =====
 
 ## Installation
@@ -6,94 +6,70 @@ CocaEnum
 clone the directory
 
 ```shell
-$ cd CocaEnum
+$ cd TestPort
 $ pip3 install .
 
 ```
 
-
-## Usage
+## Client Usage
 
 ```shell
-$ cocaenum -h
-Usage: cocaenum [OPTIONS] COMMAND [ARGS]...
+$ python3 client.py -h
+usage: client.py [-h] --attacker ATTACKER [--tcp-method TCP_METHOD]
 
-Options:
-  -h, --help  Show this message and exit.
+PortTest Client
 
-Commands:
-  scan
-  sniff
+optional arguments:
+  -h, --help            show this help message and exit
+  --attacker ATTACKER, -a ATTACKER
+                        Attacker Listener Server IP
+  --tcp-method TCP_METHOD, -t TCP_METHOD
+                        TCP Method. The options are: DONTFRAG|TTL. Default:
+                        DONTFRAG
 
-$ cocaenum sniff -h
-Usage: cocaenum sniff [OPTIONS]
+$ sudo python3 portest.py -h
+usage: portest.py [-h] [--timeout TIMEOUT] [--source SOURCE] [--interface INTERFACE]
 
-Options:
-  -c, --count INTEGER    number of packets to catch.
-  -t, --timeout INTEGER  Timout in second.
-  -v, --verbose
-  -i, --interfaces TEXT  Interfaces name for sniffing Default all interfaces.
-  -h, --help             Show this message and exit.
+Port Test Server listen to the world!
 
-$ cocaenum scan -h
-Usage: cocaenum scan [OPTIONS]
-
-Options:
-  -i, --interface TEXT  interface name for change ip and scan.
-  -s, --subnets TEXT    Network subnets for scan.(file is possible.) for
-                        example: 192.168.0.0/24 or specific ip: 192.168.0.1
-  -v, --verbose
-  -p, --protocol TEXT   ARP or ICMP
-  --dhcp                Return to DHCP setting after finish. Default last
-                        settings.
-  -h, --help            Show this message and exit.
+optional arguments:
+  -h, --help            show this help message and exit
+  --timeout TIMEOUT, -t TIMEOUT
+                        Timout in second. Default: 86400 (24H).
+  --source SOURCE, -s SOURCE
+                        Source ip if known. Default all sources.
+  --interface INTERFACE, -i INTERFACE
+                        Local IP to sniff packets.
 
 ```
 
-### Run network sniffing to get address.
+### Run Server.
 
 ```shell
-$ sudo  cocaenum sniff -c 10000 -v
-PROCESS  - CocaEnum -  Start sniffing...
-10000
-INFO     - CocaEnum -  Stop sniffing
-SUCCESS  - CocaEnum -  ['192.168.xx.4', '192.168.xx.17', '192.168.xx.3', '192.168.yy.15', '192.168.yy.4', '192.168.yy.7']
+$ sudo python3 portest.py -i "<local_ip>" -s "Client_ip (optinal)"
+PorTest - INFO - Start sniffing for 86400 sec...
+PorTest - SUCCESS - Count Packets: 523945.
+PorTest - INFO - Sniffing Done!.
+$ sort Results.txt |uniq >UResults.txt
 ```
 
-### Run IP scan with ARP
+### Run Client
 
 ```shell
-$ $ sudo cocaenum scan  -i enp0s3 -v -p arp -s 192.168.20.0/24 --dhcp
-PROCESS  - CocaEnum -  Getting MAC and IP's address from 192.168.20.0/24 subnet.
-SUCCESS  - CocaEnum -  Hosts found in subnet: 192.168.20.0/24.
-INFO     - CocaEnum -  [('192.168.20.30', 'AA:BB:CC:00:11:22'), ('192.168.20.31', 'AA:BB:CC:00:11:22'), ('192.168.20.32', 'AA:BB:CC:00:11:22'), ('192.168.20.33', 'AA:BB:CC:00:11:22'), ('192.168.20.34', 'AA:BB:CC:00:11:22'), ('192.168.20.35', 'AA:BB:CC:00:11:22'), ('192.168.20.36', 'AA:BB:CC:00:11:22'), ('192.168.20.37', 'AA:BB:CC:00:11:22'), ('192.168.20.38', 'AA:BB:CC:00:11:22'), ('192.168.20.39', 'AA:BB:CC:00:11:22'), ('192.168.20.40', 'AA:BB:CC:00:11:22')]
+$ python3 client.py -a <IP_Server>  -t ttl
+Port Test Client run against <IP_Server>, TCP-Method: TTL.
+PorTest - INFO - Using 24 Threads
+PorTest - INFO - 9% done8% done
+PorTest - INFO - 9% done
+PorTest - INFO - 41% done
+PorTest - INFO - Port Test finish run!
+PorTest - INFO - Duration in minutes: 18.724536266666668
+PorTest - INFO - Duration in seconds: 1123.472176
 ```
-### Run IP scan with ICMP
-
-```shell
-$ $ sudo cocaenum scan  -i enp0s3 -v -p arp -s 192.168.20.0/24 --dhcp
-PROCESS  - CocaEnum -  Getting MAC and IP's address from 192.168.20.0/24 subnet.
-SUCCESS  - CocaEnum -  Hosts found in subnet: 192.168.20.0/24.
-INFO     - CocaEnum -  [('192.168.20.30', 'AA:BB:CC:00:11:22'), ('192.168.20.31', 'AA:BB:CC:00:11:22'), ('192.168.20.32', 'AA:BB:CC:00:11:22'), ('192.168.20.33', 'AA:BB:CC:00:11:22'), ('192.168.20.34', 'AA:BB:CC:00:11:22'), ('192.168.20.35', 'AA:BB:CC:00:11:22'), ('192.168.20.36', 'AA:BB:CC:00:11:22'), ('192.168.20.37', 'AA:BB:CC:00:11:22'), ('192.168.20.38', 'AA:BB:CC:00:11:22'), ('192.168.20.39', 'AA:BB:CC:00:11:22'), ('192.168.20.40', 'AA:BB:CC:00:11:22')]
-```
-
 
 
 ## Additional Info
-
-* Cloned repositories are stored under ~/.surch/clones
-* Result files are stored under ~/.surch/results
-
-## Testing
-
-NOTE: Running the tests require an internet connection
-
-```shell
-git clone git@github.com:cloudify-cosmo/surch.git
-cd surch
-pip install tox
-tox
-```
+* Threds number is 2 threds for each cpu core
 
 ## Contributions..
 
