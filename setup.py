@@ -12,27 +12,23 @@ def read(*parts):
 
 setup(
     name='portest',
-    version='0.1.0',
+    version='2.0.0',
     author=['HavivV'],
     author_email=['HavivV1305@gmail.com'],
     license='LICENSE',
     platforms='linux',
-    description='Check port throw firewall to your attack server',
+    description='portest',
     long_description=read('README.md'),
     packages=['.',
     ],
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'portest = main:main',
+            'portest = portest:main',
         ]
     },
     install_requires=[
         "scapy",
-        "colorlog",
-        "click==6.7",
-        "requests",
-        "netifaces",
     ]
 )
 
