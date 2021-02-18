@@ -26,7 +26,9 @@ optional arguments:
   --tcp-method TCP_METHOD, -t TCP_METHOD
                         TCP Method. The options are: DONTFRAG|TTL. Default:
                         DONTFRAG
-
+```
+## Server Usage
+```
 $ sudo python3 portest.py -h
 usage: portest.py [-h] [--timeout TIMEOUT] [--source SOURCE] [--interface INTERFACE]
 
