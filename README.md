@@ -59,7 +59,6 @@ $ sort Results.txt |uniq >UResults.txt
 $ python3 client.py -a <IP_Server>  -t ttl
 Port Test Client run against <IP_Server>, TCP-Method: TTL.
 PorTest - INFO - Using 24 Threads
-PorTest - INFO - 9% done8% done
 PorTest - INFO - 9% done
 PorTest - INFO - 41% done
 PorTest - INFO - Port Test finish run!
