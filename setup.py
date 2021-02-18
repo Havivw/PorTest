@@ -13,8 +13,8 @@ def read(*parts):
 setup(
     name='portest',
     version='2.0.0',
-    author=['HavivV'],
-    author_email=['HavivV1305@gmail.com'],
+    author=['HavivV', 'nikosokolik'],
+    author_email=['HavivV1305@gmail.com', 'nikolaysok@gmail.com'],
     license='LICENSE',
     platforms='linux',
     description='portest',
