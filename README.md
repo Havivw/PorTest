@@ -61,6 +61,8 @@ Port Test Client run against <IP_Server>, TCP-Method: TTL.
 PorTest - INFO - Using 24 Threads
 PorTest - INFO - 9% done
 PorTest - INFO - 41% done
+PorTest - INFO - 72% done
+PorTest - INFO - 98% done
 PorTest - INFO - Port Test finish run!
 PorTest - INFO - Duration in minutes: 18.724536266666668
 PorTest - INFO - Duration in seconds: 1123.472176
